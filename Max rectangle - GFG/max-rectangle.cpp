@@ -71,6 +71,7 @@ class Solution{
         // compute area of 1st row
         int area = largestRectangleArea(M[0] , m);
         
+        //for remaining rows
         for(int i = 1 ; i < n ; i++){
             for(int j = 0 ; j < m ; j++){
                 
@@ -83,7 +84,8 @@ class Solution{
                 }
             }
             //entire row is updated now
-            area = max(area , largestRectangleArea(M[i] , m));
+            int newArea = largestRectangleArea(M[i] , m);
+            area = max(area , newArea);
         }
         return area;
     }
