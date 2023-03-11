@@ -43,7 +43,7 @@ class Solution
         int ans = s.top();
         //step 3 -> single element in stack is potential celebrity ho bhi skta h or nhi bhi so verify
         
-        bool rowCheck = false;
+        //bool rowCheck = false;
         int zeroCount = 0;
         
         for(int i = 0 ; i < n ; i++){
@@ -53,9 +53,10 @@ class Solution
         }
         
         //all zeros
-        if(zeroCount == n){
-            rowCheck = true;
-        }
+        // if(zeroCount == n){
+        //     rowCheck = true;
+        // }
+        if(zeroCount != n) return -1;
         
         //column check
         bool colCheck = false;
@@ -67,17 +68,19 @@ class Solution
             }
         }
         
-        if(oneCount == n-1){  //n-1 bcz diagonal baad diye
-            colCheck = true;
-        }     
+        // if(oneCount == n-1){  n-1 bcz diagonal baad diye
+        //     colCheck = true;
+        // }     
+        if(oneCount != n-1) return -1;
         
-        if(rowCheck == true && colCheck == true){
-            return ans;
-        }
-        else{
-            return -1;
-        }
+        // if(rowCheck == true && colCheck == true){
+        //     return ans;
+        // }
+        // else{
+        //     return -1;
+        // }
         
+        return ans;
         
     }
 };
