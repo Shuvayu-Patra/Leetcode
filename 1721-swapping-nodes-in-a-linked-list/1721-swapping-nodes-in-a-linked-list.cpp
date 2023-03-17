@@ -27,21 +27,55 @@ private:
     
 public:
     ListNode* swapNodes(ListNode* head, int k) {
-        vector<int>v;
-        ListNode* anshead = NULL;
-        ListNode* tail = NULL;
+        
+//         vector<int>v;
+//         ListNode* anshead = NULL;
+//         ListNode* tail = NULL;
+        
+//         ListNode* curr = head;
+//         while(curr != NULL){
+//             v.push_back(curr -> val);
+//             curr = curr -> next;
+//         }
+        
+//         swap(v[k-1] , v[v.size() - k]);
+        
+//         for(auto it : v){
+//             arrayToList(anshead , it , tail);
+//         }
+//         return anshead;
+        
+//********************************************
         
         ListNode* curr = head;
-        while(curr != NULL){
-            v.push_back(curr -> val);
+        int pos = 1;
+        while(pos < k){
             curr = curr -> next;
+            pos++;
         }
         
-        swap(v[k-1] , v[v.size() - k]);
-        
-        for(auto it : v){
-            arrayToList(anshead , it , tail);
+        ListNode* len = head;
+        int count = 0;
+        while(len != NULL){
+            len = len -> next;
+            count++;
         }
-        return anshead;
+        
+        ListNode* temp = head;
+        pos = 0;
+        k = count - k;
+        while(pos < k){
+            temp = temp -> next;
+            pos++;
+        }
+        
+        int val1 = curr -> val;
+        int val2 = temp -> val;
+        
+        curr -> val = val2;
+        temp -> val = val1;
+        
+        return head;
+   
     }
 };
