@@ -1,0 +1,10 @@
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        for(int i = 0 ; i<nums.size() ; i++){
+            return nums[i];
+        }
+        return 0;
+    }
+};
