@@ -111,16 +111,17 @@ class Solution
                 
                 pred->right = curr->right;
                 curr->right = curr->left;
+                curr->left = NULL;
             }
             curr = curr->right;
         }
         
         //left part NULL
-        curr = root;
-        while(curr!=NULL){
-            curr -> left = NULL;
-            curr = curr->right;
-        }
+        // curr = root;
+        // while(curr!=NULL){
+        //     curr -> left = NULL;
+        //     curr = curr->right;
+        // }
     }
 };
 
