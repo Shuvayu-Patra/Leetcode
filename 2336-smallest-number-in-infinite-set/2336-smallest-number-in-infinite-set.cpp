@@ -4,7 +4,7 @@ public:
     map<int,int> mp;
     
     SmallestInfiniteSet() {
-        for(int i=1 ; i<1002 ; i++){
+        for(int i=1 ; i<1001 ; i++){
             mp[i] = 1;
             pq.push(i);
         }
