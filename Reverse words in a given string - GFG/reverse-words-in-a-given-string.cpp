@@ -26,6 +26,7 @@ class Solution
         for(int i=1 ; i<ans.size() ; i++){
             temp += ans[i];
         }
+        // ans.pop_back();
         return temp;
     } 
 };
