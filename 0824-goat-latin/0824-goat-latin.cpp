@@ -6,30 +6,30 @@ public:
         }
     
     string toGoatLatin(string S) {
-        S+=' ';                         //adding space to string for separating words
+        S+=' ';      
         string ans,s;
-        string x="a";                    // to store a
+        string x="a";              
         for(int i=0;i<S.length();i++)
         {
-            if(S[i]==' ')                  //extracted a word
+            if(S[i]==' ')     
             {   
-                if(isvowel(s[0]))            // if vowel
+                if(isvowel(s[0])) 
                     s+="ma";
-                else                            // if consonant
+                else     
                 {
                     char c=s[0];
                     s=s.substr(1);
                     s+=c;
                     s+="ma";
                 }
-                s+=x;ans+=s;ans+=" ";           //adding those extra "a" to end
+                s+=x;ans+=s;ans+=" ";    
                 x+="a";
                 s="";
             }
             else
-                s+=S[i];                  //constructing a word
+                s+=S[i];                 
         }
-        ans.pop_back();                    //removing the last space added previously in ans
+        ans.pop_back(); 
         return ans;
     }
 };
