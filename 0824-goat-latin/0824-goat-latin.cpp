@@ -1,16 +1,35 @@
 class Solution {
 public:
-    string toGoatLatin(string sentence) {
-        string res,word,a="a";
-        stringstream ss(sentence);
-        while(ss>>word){    
-			if(word[0]=='a'||word[0]=='e'||word[0]=='i'||word[0]=='o'||word[0]=='u'||word[0]=='A'||word[0]=='E'||word[0]=='I'||word[0]=='O'||word[0]=='U')
-                res+=word+"ma";
-            else
-                res+=word.substr(1)+word[0]+"ma";
-            res+=a+" ";
-            a+="a";
+    bool isvowel(char x)
+        {
+            return (x=='A' || x== 'E' ||x=='I' || x== 'O' || x=='U' || x=='a' || x== 'e' ||x=='i' || x== 'o' || x=='u');
         }
-        return res.substr(0,res.size()-1);
+    
+    string toGoatLatin(string S) {
+        S+=' ';                         //adding space to string for separating words
+        string ans,s;
+        string x="a";                    // to store a
+        for(int i=0;i<S.length();i++)
+        {
+            if(S[i]==' ')                  //extracted a word
+            {   
+                if(isvowel(s[0]))            // if vowel
+                    s+="ma";
+                else                            // if consonant
+                {
+                    char c=s[0];
+                    s=s.substr(1);
+                    s+=c;
+                    s+="ma";
+                }
+                s+=x;ans+=s;ans+=" ";           //adding those extra "a" to end
+                x+="a";
+                s="";
+            }
+            else
+                s+=S[i];                  //constructing a word
+        }
+        ans.pop_back();                    //removing the last space added previously in ans
+        return ans;
     }
 };
