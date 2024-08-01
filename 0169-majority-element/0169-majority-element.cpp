@@ -18,7 +18,7 @@ public:
             // for(int i=0; i<nums.size(); i++){
             //     if(nums[i] == ele) cnt1++;
             // }
-            // if(cnt1 > nums.size()/2) return 
+            // if(cnt1 > nums.size()/2) return ele;
         }
         return ele;
     }
