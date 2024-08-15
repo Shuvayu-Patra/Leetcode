@@ -1,22 +1,44 @@
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-       // Initialization some neccessary variables
-        vector<int>v;
+        int n1 = nums1.size(), n2 = nums2.size();
+        int n = (n1+n2);
+        int ind2 = (n/2);
+        int ind1 = (ind2 - 1);
+        int cnt = 0;
+        int i=0, j=0;
+        int ele1 = -1, ele2 = -1;
+        while(i < n1 && j < n2){
+            if(nums1[i] < nums2[j]){
+                if(cnt == ind1) ele1 = nums1[i];
+                if(cnt == ind2) ele2 = nums1[i];
+                cnt++;
+                i++;
+            }
+            else{
+                if(cnt == ind1) ele1 = nums2[j];
+                if(cnt == ind2) ele2 = nums2[j];
+                cnt++;
+                j++;
+            }
+        }
         
-        // store the array in the new array
-        for(auto num:nums1)   // O(n1)
-            v.push_back(num);
+        while(i < n1){
+                if(cnt == ind1) ele1 = nums1[i];
+                if(cnt == ind2) ele2 = nums1[i];
+                cnt++;
+                i++;
+        }
         
-        for(auto num:nums2)  // O(n2)
-            v.push_back(num);
+        while( j < n2){
+                if(cnt == ind1) ele1 = nums2[j];
+                if(cnt == ind2) ele2 = nums2[j];
+                cnt++;
+                j++;
+        }
         
-        // Sort the array to find the median
-        sort(v.begin(),v.end());  // O(nlogn)
         
-        // Find the median and Return it
-        int n=v.size();  // O(n)
-        
-        return n%2?v[n/2]:(v[n/2-1]+v[n/2])/2.0;
+        if(n%2 == 1) return ele2;
+        return (double)((double)(ele1+ele2))/2.0;     
     }
 };
