@@ -2,15 +2,15 @@ class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
         vector<int>ans(nums.size(),0);
-        int pIndex = 0, nIndex = 1;
-        for(int i=0; i<nums.size(); i++){
-            if(nums[i] > 0){
-                ans[pIndex] = nums[i];
-                pIndex += 2;
+        int i=0, j=i+1;
+        for(int k=0; k<nums.size(); k++){
+            if(nums[k] > 0){
+                ans[i] = nums[k];
+                i+=2;
             }
             else{
-                ans[nIndex] = nums[i];
-                nIndex += 2;
+                ans[j] = nums[k];
+                j+=2;
             }
         }
         return ans;
