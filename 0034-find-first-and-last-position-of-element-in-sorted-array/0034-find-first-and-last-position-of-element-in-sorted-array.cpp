@@ -1,41 +1,28 @@
 class Solution {
 public:
-    int firstOcc(vector<int>& arr, int target){
-        int n = arr.size();
-        int l = 0, h = n-1;
-        int ans = -1;
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int fo = -1, lo = -1;
+        int l = 0, h = nums.size()-1;
         while(l <= h){
-            int mid = l + (h-l)/2;
-            if(arr[mid] == target){
-                ans = mid;
+            int mid = (l+h)/2;
+            if(nums[mid] == target){
+                fo = mid;
                 h = mid - 1;
             }
-            else if(arr[mid] < target) l = mid+1;
-            else h = mid-1;
+            else if(nums[mid] > target) h = mid - 1;
+            else l = mid + 1;
         }
-        return ans;
-    }
-    
-    int lastOcc(vector<int>& arr, int target){
-        int n = arr.size();
-        int l = 0, h = n-1;
-        int ans = -1;
+        
+        l = 0, h = nums.size()-1;
         while(l <= h){
-            int mid = l + (h-l)/2;
-            if(arr[mid] == target){
-                ans = mid;
-                l = mid+1;
+            int mid = (l+h)/2;
+            if(nums[mid] == target){
+                lo = mid;
+                l = mid + 1;
             }
-            else if(arr[mid] < target) l = mid + 1;
+            else if(nums[mid] < target) l = mid+1;
             else h = mid - 1;
         }
-        return ans;
-    }
-    
-    vector<int> searchRange(vector<int>& nums, int target) {
-        int first = firstOcc(nums,target);
-        if(first == -1) return {-1,-1};
-        int last = lastOcc(nums,target);
-        return {first,last};
+        return {fo,lo};
     }
 };
