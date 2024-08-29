@@ -1,33 +1,23 @@
 class Solution {
 public:
-    int maxE(vector<int>& piles){
-        int maxi = INT_MIN;
-        for(int i = 0; i<piles.size(); i++){
-            maxi = max(maxi,piles[i]);
-        }
-        return maxi;
-    }
-    
-    long long TotalHour(vector<int>& piles, int hr){
+    long long func(vector<int> v, int mid){
         long long ans = 0;
-        for(int i=0; i<piles.size(); i++){
-            ans += ceil((double)piles[i]/(double)hr);
+        for(int i=0; i<v.size(); i++){
+            ans += ceil((double)v[i]/(double)mid);
         }
         return ans;
     }
     
     int minEatingSpeed(vector<int>& piles, int h) {
-        int low = 1, high = maxE(piles), ans = INT_MAX;
-        while(low <= high){
-            int mid = (low+high)/2;
-            long long totalHr = TotalHour(piles, mid);
-            if(totalHr <= h){
-                ans = min(ans, mid);
-                high = mid - 1;
+        int l = 1, hi = *max_element(piles.begin(), piles.end()), ans = 0;
+        while(l <= hi){
+            int mid = (l+hi)/2;
+            long long timeTakes = func(piles,mid);
+            if(timeTakes <= h){
+                ans = mid;
+                hi = mid - 1;
             }
-            else{
-                low = mid + 1;
-            }
+            else l = mid + 1;
         }
         return ans;
     }
