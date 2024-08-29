@@ -1,27 +1,23 @@
 class Solution {
 public:
-    int CountSum(vector<int>& v, int m){
+    int func(vector<int>v, int mid){
         int sum = 0;
         for(int i=0; i<v.size(); i++){
-            sum += ceil((double)(v[i])/(double)(m));
+            sum += ceil((double)v[i]/(double)mid);
         }
         return sum;
     }
     
     int smallestDivisor(vector<int>& nums, int threshold) {
-        int maxi = INT_MIN;
-        for(int i=0; i<nums.size(); i++){
-            maxi = max(maxi, nums[i]);
-        }
-        int l = 1, h = maxi;
+        int l = 1;
+        int h = *max_element(nums.begin(), nums.end());
         while(l <= h){
             int mid = (l+h)/2;
-            if(CountSum(nums,mid) <= threshold){
-                h = mid - 1;
-            }
-            else{
+            int newThres = func(nums,mid);
+            if(newThres > threshold){
                 l = mid + 1;
             }
+            else h = mid - 1;
         }
         return l;
     }
