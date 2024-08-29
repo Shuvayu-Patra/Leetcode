@@ -1,36 +1,33 @@
 class Solution {
 public:
-    bool possible(vector<int>& v, int day, int m, int k){
-        int cnt = 0, noOfBoq = 0;
+    bool func(vector<int>v, int mid, int m , int k){
+        int cnt = 0,noOfBoq = 0;
         for(int i=0; i<v.size(); i++){
-            if(v[i] <= day) cnt++;
-            else{
-                noOfBoq += (cnt/k);
+            if(v[i] <= mid){
+                cnt++;
+            }
+            else cnt=0;
+            if(cnt == k){
+                noOfBoq++;
                 cnt = 0;
             }
         }
-        noOfBoq += (cnt/k);
-        if(noOfBoq >= m) return true;
-        return false;
+        return noOfBoq >= m;
     }
     
-    int minDays(vector<int>& bloomDay, int m, int k) {
-        long long temp = m * 1LL * k * 1LL;
-        if( bloomDay.size() < temp) return -1;
-        int mini = INT_MAX, maxi = INT_MIN;
-        for(int i=0; i<bloomDay.size(); i++){
-            mini = min(mini, bloomDay[i]);
-            maxi = max(maxi, bloomDay[i]);
-        }
-        int l = mini, h = maxi;
+    
+    int minDays(vector<int>& b, int m, int k) {
+        int n = b.size(), ans = 0;
+        if(((double)(m)*(double)(k)) > n) return -1;
+        int l = 1, h=*max_element(b.begin(),b.end());
         while(l <= h){
             int mid = (l+h)/2;
-            if(possible(bloomDay, mid, m, k) == true){
+            bool canMake = func(b, mid, m, k);
+            if(canMake){
+                ans = mid;
                 h = mid - 1;
             }
-            else{
-                l = mid + 1;
-            }
+            else l = mid + 1;
         }
         return l;
     }
