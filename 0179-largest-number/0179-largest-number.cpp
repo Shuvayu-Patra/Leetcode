@@ -2,7 +2,7 @@ class Solution {
 public:
     string largestNumber(vector<int>& nums) {
         string ans = "";
-        auto compare = [=](int a, int b){return to_string(a)+to_string(b) > to_string(b)+to_string(a);};
+        auto compare = [](int a, int b){return to_string(a)+to_string(b) > to_string(b)+to_string(a);};
         sort(nums.begin(),nums.end(),compare);
         for(int i=0; i<nums.size(); i++){
              ans += to_string(nums[i]);
