@@ -8,7 +8,7 @@ public:
         }
         
         for(int i=ind; i<arr.size(); i++){
-            if(i > ind && arr[i] == arr[i-1]) continue;
+            if(i != ind && arr[i] == arr[i-1]) continue;
             if(arr[i] > t) break;
             ds.push_back(arr[i]);
             findAns(i+1,arr,t-arr[i],ans, ds);
