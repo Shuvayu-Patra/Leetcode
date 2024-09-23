@@ -1,25 +1,20 @@
 class Solution {
 public:
-    void findAns(int ind, vector<int>& nums,set<vector<int>> &ans,vector<int> ds){
-            if(ind == nums.size()){
-                sort(ds.begin(),ds.end());
-                ans.insert(ds);
-                return;
+    void findAns(int ind, vector<int>& nums, vector<vector<int>> &ans,vector<int>& ds){
+        ans.push_back(ds);
+        for(int i=ind; i<nums.size(); i++){
+            if(i != ind && nums[i]==nums[i-1]) continue;
+            ds.push_back(nums[i]);
+            findAns(i+1, nums, ans, ds);
+            ds.pop_back();
         }
-        ds.push_back(nums[ind]);
-        findAns(ind+1, nums, ans, ds);
-        ds.pop_back();
-        findAns(ind+1, nums, ans, ds);
     }
     
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         vector<vector<int>> ans;
-        set<vector<int>> temp;
         vector<int>ds;
-        findAns(0,nums,temp,ds);
-        for (auto it = temp.begin(); it != temp.end(); it++) {
-          ans.push_back( * it);
-        }
+        sort(nums.begin(), nums.end());
+        findAns(0,nums,ans,ds);
         return ans;
     }
 };
